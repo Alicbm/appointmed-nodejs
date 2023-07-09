@@ -1,10 +1,10 @@
 const express = require('express')
 const router = express.Router()
 
-const DoctorMorningWeekService = require('../services/doctorMorningWeek.service')
+const UserMorningWeekService = require('../services/userMorningWeek.service')
 const validatorHandler = require('../middlewares/validator.handler')
 const { getHorarygWeek, createUpdateHoraryWeek } = require('../schemas/week.schema')
-const service = new DoctorMorningWeekService()
+const service = new UserMorningWeekService()
 
 router.get('/',
   async (req, res) => {
