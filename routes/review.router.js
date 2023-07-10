@@ -2,9 +2,15 @@ const express = require('express')
 const router = express.Router()
 
 const ReviewService = require('../services/review.service')
-const validatorHandler = require('../middlewares/validator.handler')
-const { getReview, createReview, updateReview } = require('../schemas/review.schema')
 const service = new ReviewService()
+
+const validatorHandler = require('../middlewares/validator.handler')
+const { checkRoles } = require('../middlewares/auth.handler')
+const { 
+  getReview, 
+  createReview, 
+  updateReview 
+} = require('../schemas/review.schema')
 
 router.get('/',
   async (req, res) => {
@@ -20,6 +26,7 @@ router.get('/:id',
   })
 
 router.post('/',
+  checkRoles('admin'),
   validatorHandler(createReview, 'body'),
   async (req, res) => {
     const body = req.body
@@ -29,6 +36,7 @@ router.post('/',
   })
 
 router.patch('/',
+  checkRoles('admin'),  
   validatorHandler(updateReview, 'params'),
   validatorHandler(updateReview, 'body'),
   async (req, res) => {
@@ -37,6 +45,7 @@ router.patch('/',
   })
 
 router.delete('/:id',
+  checkRoles('admin'),
   async (req, res) => {
     const doctor = await service.delete(req.params.id)
     res.json(doctor)

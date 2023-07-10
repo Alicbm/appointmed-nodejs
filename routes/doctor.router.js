@@ -4,6 +4,7 @@ const router = express.Router()
 const DoctorService = require('../services/doctor.service')
 const validatorHandler = require('../middlewares/validator.handler')
 const { getDoctor, createDoctor, updateDoctor } = require('../schemas/doctor.schema')
+const { checkRoles } = require('../middlewares/auth.handler')
 const service = new DoctorService()
 
 router.get('/',
@@ -20,6 +21,7 @@ router.get('/:id',
   })
 
 router.post('/',
+  checkRoles('admin'),
   validatorHandler(createDoctor, 'body'),
   async (req, res) => {
     const body = req.body
@@ -29,6 +31,7 @@ router.post('/',
   })
 
 router.patch('/',
+  checkRoles('admin'),
   validatorHandler(updateDoctor, 'params'),
   validatorHandler(updateDoctor, 'body'),
   async (req, res) => {
@@ -37,6 +40,7 @@ router.patch('/',
   })
 
 router.delete('/:id',
+  checkRoles('admin'),
   async (req, res) => {
     const doctor = await service.delete(req.params.id)
     res.json(doctor)

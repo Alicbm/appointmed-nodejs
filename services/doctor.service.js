@@ -5,7 +5,9 @@ class DoctorService {
   constructor(){}
 
   async getDoctors(){
-    const doctors = await models.Doctor.findAll()
+    const doctors = await models.Doctor.findAll({
+      include: ['reviews', 'morning_schedule', 'afternoon_schedule']
+    })
     if (!doctors) throw boom.notFound()
     else return doctors
   }

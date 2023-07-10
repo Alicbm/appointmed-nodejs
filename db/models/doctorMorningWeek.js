@@ -13,42 +13,52 @@ const DoctorMorningWeekModel = {
   mondayStart: {
     allowNull: true,
     type: DataTypes.INTEGER,
+    field: 'monday_start'
   },
   mondayEnd: {
     allowNull: true,
     type: DataTypes.INTEGER,
+    field: 'monday_end'
   },
   tuesdayStart: {
     allowNull: true,
     type: DataTypes.INTEGER,
+    field: 'tuesday_start'
   },
   tuesdayEnd: {
     allowNull: true,
     type: DataTypes.INTEGER,
+    field: 'tuesday_end'
   },
   wednesdayStart: {
     allowNull: true,
     type: DataTypes.INTEGER,
+    field: 'wednesday_start'
   },
   wednesdayEnd: {
     allowNull: true,
     type: DataTypes.INTEGER,
+    field: 'wednesday_end'
   },
   thursdayStart: {
     allowNull: true,
     type: DataTypes.INTEGER,
+    field: 'thursday_start'
   },
   thursdayEnd: {
     allowNull: true,
     type: DataTypes.INTEGER,
+    field: 'thursday_end'
   },
   fridayStart: {
     allowNull: true,
     type: DataTypes.INTEGER,
+    field: 'friday_start'
   },
   fridayEnd: {
     allowNull: true,
     type: DataTypes.INTEGER,
+    field: 'friday_end'
   },
   doctorId: {
     field: 'doctor_id',

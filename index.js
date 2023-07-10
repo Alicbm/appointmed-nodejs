@@ -7,6 +7,8 @@ const port = process.env.PORT || 3000
 
 app.use(express.json());
 
+require('./utils/auth/index')
+
 app.get('/', (req, res) => {
   res.send(`
     <h1>El Pepe: Welcome</h1>

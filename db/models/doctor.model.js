@@ -45,9 +45,9 @@ const DoctorSchema = {
 class Doctor extends Model {
 
   static associate(models) {
-    this.hasMany(models.Review, { as: 'reviews', foreignKey: 'doctorId' })
-    this.hasMany(models.DoctorMorningWeek, { as: 'morning_schedule', foreignKey: 'doctorId' })
-    this.hasMany(models.DoctorAfternoonWeek, { as: 'afternoon_schedule', foreignKey: 'doctorId' })
+    this.hasOne(models.Review, { as: 'reviews', foreignKey: 'doctorId' })
+    this.hasOne(models.DoctorMorningWeek, { as: 'morning_schedule', foreignKey: 'doctorId' })
+    this.hasOne(models.DoctorAfternoonWeek, { as: 'afternoon_schedule', foreignKey: 'doctorId' })
   }
 
   static config(sequelize) {

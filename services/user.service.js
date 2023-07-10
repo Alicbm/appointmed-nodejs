@@ -1,11 +1,14 @@
 const { models } = require('../libs/sequelize')
 const boom = require('@hapi/boom')
+const bcrypt = require('bcrypt')
 
 class UserService {
   constructor(){}
 
-  async getDoctors(){
-    const users = await models.User.findAll()
+  async getUsers(){
+    const users = await models.User.findAll({
+      include: ['morning_schedule', 'afternoon_schedule']
+    })
     if (!users) throw boom.notFound()
     else return users
   }
@@ -21,8 +24,15 @@ class UserService {
   }
 
   async create(body){
-    const newUser = await models.User.create(body)
-    return newUser
+    const hashPassword = await bcrypt.hash(body.password, 10)
+    const newUser = {
+      ...body,
+      password: hashPassword
+    }
+
+    const res = await models.User.create(newUser)
+    delete res.dataValues.password
+    return res
   }
 
   async update(id, body){

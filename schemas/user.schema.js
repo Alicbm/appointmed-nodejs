@@ -6,6 +6,7 @@ const email = Joi.string()
 const cellphone = Joi.string()
 const city = Joi.string()
 const role = Joi.string()
+const password = Joi.string()
 
 const getUser = Joi.object({
   id: id.required(),
@@ -17,6 +18,7 @@ const createUser = Joi.object({
   cellphone: cellphone.required(),
   city: city.required(),
   role: role.required(),
+  password: password.required(),
 })
 
 const updateUser = Joi.object({
@@ -25,6 +27,7 @@ const updateUser = Joi.object({
   cellphone: cellphone.optional(),
   city: city.optional(),
   role: role.optional(),
+  password: password.optional(),
 })
 
 module.exports = { getUser, createUser, updateUser }

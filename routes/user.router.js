@@ -8,7 +8,7 @@ const service = new UserService()
 
 router.get('/',
   async (req, res) => {
-    const doctors = await service.getDoctors()
+    const doctors = await service.getUsers()
     res.json(doctors)
   })
 

@@ -18,6 +18,10 @@ const UserSchema = {
     unique: true,
     allowNull: false,
   },
+  password: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
   cellphone: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -36,8 +40,8 @@ const UserSchema = {
 class User extends Model {
 
   static associate(models) {
-    this.hasMany(models.UserMorningWeek, { as: 'morning_schedule', foreignKey: 'userId' })
-    this.hasMany(models.UserAfternoonWeek, { as: 'afternoon_schedule', foreignKey: 'userId' })
+    this.hasOne(models.UserMorningWeek, { as: 'morning_schedule', foreignKey: 'userId' })
+    this.hasOne(models.UserAfternoonWeek, { as: 'afternoon_schedule', foreignKey: 'userId' })
   }
 
   static config(sequelize) {

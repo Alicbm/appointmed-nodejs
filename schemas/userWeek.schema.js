@@ -11,12 +11,13 @@ const thursdayStart =  Joi.number().integer()
 const thursdayEnd =  Joi.number().integer()
 const fridayStart =  Joi.number().integer()
 const fridayEnd =  Joi.number().integer()
+const userId =  Joi.number().integer()
 
-const getHorarygWeek = Joi.object({
+const getUserHorarygWeek = Joi.object({
   id: id.required()
 })
 
-const createUpdateHoraryWeek = Joi.object({
+const createUserHoraryWeek = Joi.object({
   mondayStart: mondayStart.optional(),
   mondayEnd: mondayEnd.optional(),
   tuesdayStart: tuesdayStart.optional(),
@@ -27,6 +28,21 @@ const createUpdateHoraryWeek = Joi.object({
   thursdayEnd: thursdayEnd.optional(),
   fridayStart: fridayStart.optional(),
   fridayEnd: fridayEnd.optional(),
+  userId: userId.required()
 })
 
-module.exports = { getHorarygWeek, createUpdateHoraryWeek }
+const updateUserHoraryWeek = Joi.object({
+  mondayStart: mondayStart.optional(),
+  mondayEnd: mondayEnd.optional(),
+  tuesdayStart: tuesdayStart.optional(),
+  tuesdayEnd: tuesdayEnd.optional(),
+  wednesdayStart: wednesdayStart.optional(),
+  wednesdayEnd: wednesdayEnd.optional(),
+  thursdayStart: thursdayStart.optional(),
+  thursdayEnd: thursdayEnd.optional(),
+  fridayStart: fridayStart.optional(),
+  fridayEnd: fridayEnd.optional(),
+  userId: userId.optional()
+})
+
+module.exports = { getUserHorarygWeek, updateUserHoraryWeek,  createUserHoraryWeek}

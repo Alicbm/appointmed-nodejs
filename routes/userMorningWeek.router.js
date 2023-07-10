@@ -3,7 +3,13 @@ const router = express.Router()
 
 const UserMorningWeekService = require('../services/userMorningWeek.service')
 const validatorHandler = require('../middlewares/validator.handler')
-const { getHorarygWeek, createUpdateHoraryWeek } = require('../schemas/week.schema')
+
+const { 
+  getUserHorarygWeek, 
+  createUserHoraryWeek, 
+  updateUserHoraryWeek 
+} = require('../schemas/userWeek.schema')
+
 const service = new UserMorningWeekService()
 
 router.get('/',
@@ -13,30 +19,30 @@ router.get('/',
   })
 
 router.get('/:id',
-  validatorHandler(getHorarygWeek, 'params'),
+  validatorHandler(getUserHorarygWeek, 'params'),
   async (req, res) => {
-    const value = await service.findOne(req.id)
+    const value = await service.findOne(req.params.id)
     res.json(value)
   })
 
 router.post('/',
-  validatorHandler(createUpdateHoraryWeek, 'body'),
+  validatorHandler(createUserHoraryWeek, 'body'),
   async (req, res) => {
     const newDoctor = await service.create(req.body)
     res.json(newDoctor)
   })
 
 router.patch('/',
-  validatorHandler(createUpdateHoraryWeek, 'params'),
-  validatorHandler(createUpdateHoraryWeek, 'body'),
+  validatorHandler(updateUserHoraryWeek, 'params'),
+  validatorHandler(updateUserHoraryWeek, 'body'),
   async (req, res) => {
-    const value = await service.update(req.id, req.body)
+    const value = await service.update(req.params.id, req.body)
     res.json(value)
   })
 
 router.delete('/:id',
   async (req, res) => {
-    const value = await service.delete(req.id)
+    const value = await service.delete(req.params.id)
     res.json(value)
   })
 
