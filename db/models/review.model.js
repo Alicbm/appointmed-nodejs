@@ -33,7 +33,7 @@ const ReviewModel = {
 
 class Review extends Model {
   static associate(models) {
-    this.belongsTo(models.Doctor, { as: 'doctors'})
+    this.belongsTo(models.Doctor, { as: 'doctors', foreignKey: 'doctorId'})
   }
 
   static config(sequelize) {

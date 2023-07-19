@@ -21,11 +21,11 @@ routerApi(app)
 app.listen(port, () => {
   console.log('Running at port: ' + port);
 
-  // sequelize.sync({ force: false }).then(() => {
-  //   console.log('DB running succesfully...');
-  // }).catch(err => {
-  //   console.log('Ops, there is a problem: ' + err);
-  // })
+  sequelize.sync({ force: true }).then(() => {
+    console.log('DB running succesfully...');
+  }).catch(err => {
+    console.log('Ops, there is a problem: ' + err);
+  })
 })
 
 

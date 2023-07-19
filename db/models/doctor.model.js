@@ -1,4 +1,5 @@
 const { Model, DataTypes } = require('sequelize')
+const { CATEGORY_TABLE } = require('./category.model')
 
 const DOCTOR_TABLE = 'doctors'
 
@@ -39,6 +40,17 @@ const DoctorSchema = {
   image: {
     type: DataTypes.STRING,
     allowNull: false,
+  },
+  categoryId: {
+    field: 'category_id',
+    allowNull: true,
+    type: DataTypes.INTEGER,
+    references: {
+      model: CATEGORY_TABLE,
+      key: 'id'
+    },
+    onUpdate: 'CASCADE',
+    onDelete: 'SET NULL'
   }
 }
 
@@ -48,6 +60,7 @@ class Doctor extends Model {
     this.hasOne(models.Review, { as: 'reviews', foreignKey: 'doctorId' })
     this.hasOne(models.DoctorMorningWeek, { as: 'morning_schedule', foreignKey: 'doctorId' })
     this.hasOne(models.DoctorAfternoonWeek, { as: 'afternoon_schedule', foreignKey: 'doctorId' })
+    this.belongsTo(models.Category, { as: 'doctors', foreignKey: 'categoryId'})
   }
 
   static config(sequelize) {

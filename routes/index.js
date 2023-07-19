@@ -2,6 +2,7 @@ const express = require('express')
 const passport = require('passport')
 const { checkRoles } = require('../middlewares/auth.handler')
 
+const CategoryRouter = require('./category.router')
 const DoctorRouter = require('./doctor.router')
 const ReviewRouter = require('./review.router')
 const DoctorMorningWeekRouter = require('./doctorMorningWeek.router')
@@ -14,6 +15,12 @@ const authRouter = require('./auth.router')
 function routerApi(app) {
   const router = express.Router()
   app.use('/api/v1', router)
+
+  router.use(
+    '/categories',
+    // passport.authenticate('jwt', { session: false }),
+    CategoryRouter
+  )
 
   router.use(
     '/doctors',
